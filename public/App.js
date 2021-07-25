@@ -1,6 +1,7 @@
 import { Invoice } from "./classes/Invoice.js"; // when importing in ts we use js, because in the end the code is compiled in js. Also, update tsconfig to use es6 for modules
+import { ListTemplate } from "./classes/ListTemplate.js";
 import { Payment } from "./classes/Payment.js";
-// ex Interface usage
+// ex Interface usages
 // let docOne: HasFormatter;
 // let docTwo: HasFormatter;
 // docOne = new Invoice("Yoshi", "web work", 250);
@@ -19,6 +20,8 @@ const type = document.querySelector("#type");
 const toFrom = document.querySelector("#tofrom");
 const details = document.querySelector("#details");
 const amount = document.querySelector("#amount");
+const ul = document.querySelector("ul");
+const list = new ListTemplate(ul);
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     let doc;
@@ -28,5 +31,5 @@ form.addEventListener("submit", (e) => {
     else {
         doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
     }
-    console.log("doc", doc);
+    list.render(doc, type.value, "end");
 });
